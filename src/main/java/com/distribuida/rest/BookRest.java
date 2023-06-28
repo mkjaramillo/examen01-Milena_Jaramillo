@@ -30,7 +30,7 @@ public class BookRest {
     public Response crearLibros(Book libro) {
         repo.persist(libro);
         return Response.status(Response.Status.CREATED)
-                .entity("Libro creada exitosamente")
+                .entity("Libro creado exitosamente")
                 .build();
     }
 
@@ -41,7 +41,7 @@ public class BookRest {
 
         if (libroExistente == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("Libro no encontrada")
+                    .entity("Libro no encontrado")
                     .build();
         }
         libroExistente.setAuthor(libro.getAuthor());
@@ -53,7 +53,7 @@ public class BookRest {
         libroExistente.persist();
 
         return Response.status(Response.Status.OK)
-                .entity("Libro actualizada exitosamente")
+                .entity("Libro actualizado exitosamente")
                 .build();
     }
     @GET
@@ -64,7 +64,7 @@ public class BookRest {
 
         if (libro == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("libro no encontrada")
+                    .entity("libro no encontrado")
                     .build();
         }
 
@@ -79,12 +79,12 @@ public class BookRest {
         Book libro = repo.findById(id);
         if (libro == null) {
             return Response.status(Response.Status.NOT_FOUND)
-                    .entity("libro no encontrada")
+                    .entity("libro no encontrado")
                     .build();
         }
         libro.delete();
         return Response.status(Response.Status.OK)
-                .entity("libro borrada exitosamente")
+                .entity("libro borrado exitosamente")
                 .build();
 
     }
