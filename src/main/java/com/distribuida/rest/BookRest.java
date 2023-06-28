@@ -22,16 +22,12 @@ public class BookRest {
 
 
     @GET
-
     public List<Book> listarLibros() {
         return repo.listAll();
     }
 
     @POST
-
-
     public Response crearLibros(Book libro) {
-
         repo.persist(libro);
         return Response.status(Response.Status.CREATED)
                 .entity("Libro creada exitosamente")
@@ -40,7 +36,6 @@ public class BookRest {
 
     @PUT
     @Path("/{id}")
-
     public Response actualizarLibro(@PathParam("id") Long id, Book libro) {
         Book libroExistente = repo.findById(id);
 
@@ -49,7 +44,6 @@ public class BookRest {
                     .entity("Libro no encontrada")
                     .build();
         }
-
         libroExistente.setAuthor(libro.getAuthor());
         libroExistente.setIsbn(libro.getIsbn());
         libroExistente.setTitle(libro.getTitle());
@@ -62,10 +56,8 @@ public class BookRest {
                 .entity("Libro actualizada exitosamente")
                 .build();
     }
-
     @GET
     @Path("/{id}")
-
     public Response obtenerLibroPorId(@PathParam("id") Long id) {
 
         var libro = repo.findById(id);
@@ -83,18 +75,14 @@ public class BookRest {
 
     @DELETE
     @Path("/{id}")
-
     public Response eliminarLibro(@PathParam("id") Long id) {
-
         Book libro = repo.findById(id);
         if (libro == null) {
             return Response.status(Response.Status.NOT_FOUND)
                     .entity("libro no encontrada")
                     .build();
         }
-
         libro.delete();
-
         return Response.status(Response.Status.OK)
                 .entity("libro borrada exitosamente")
                 .build();
